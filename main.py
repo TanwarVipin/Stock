@@ -13,7 +13,7 @@ from datetime import datetime
 
 st.title('Stock Forecasting App')
 
-default_date = datetime(2020, 1, 1)
+default_date = "2020-01-01"
 
 
 start_date=st.date_input('Start Date',default_time)
