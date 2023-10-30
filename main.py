@@ -16,7 +16,7 @@ st.title('Stock Forecasting App')
 default_date = "2020-01-01"
 
 
-start_date=st.date_input('Start Date',default_time)
+start_date=st.date_input('Start Date',value=None)
 
 end_date=st.date_input('End Date')
 
