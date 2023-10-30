@@ -43,13 +43,13 @@ if start_date:
 # Create a layout for the chart
   layout = go.Layout(title='Candlestick Chart',
                    xaxis=dict(title='Date'),
-                   yaxis=dict(title='Price'),
-                  xaxis_rangeslider_visible=True)
+                   yaxis=dict(title='Price'))
+                  
 
 # Create a figure and add the candlestick trace to it
-  fig = go.Figure(data=[trace], layout=layout)
+  fig1 = go.Figure(data=[trace], layout=layout)
 
-  st.plotly_chart(fig)
+  st.plotly_chart(fig1)
 
   
   train_df=df[['Date','Close']].copy()
