@@ -27,42 +27,41 @@ if start_date:
   st.table(df.head(10))
 
 
-fig=go.Figure()
-fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'],name='Stock_Final_Price',line=dict(color='red')))
-fig.add_trace(go.Scatter(x=df['Date'],y=df['Open'],name='Stock_Open_Price',line=dict(color='blue')))
-fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'].rolling(100).mean(),name='Stock_Moving_Average',line=dict(color='green')))
-fig.layout.update(title_text='Time Series Data',xaxis_rangeslider_visible=True)
-st.plotly_chart(fig)
+  fig=go.Figure()
+  fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'],name='Stock_Final_Price',line=dict(color='red')))
+  fig.add_trace(go.Scatter(x=df['Date'],y=df['Open'],name='Stock_Open_Price',line=dict(color='blue')))
+  fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'].rolling(100).mean(),name='Stock_Moving_Average',line=dict(color='green')))
+  fig.layout.update(title_text='Time Series Data',xaxis_rangeslider_visible=True)
+  st.plotly_chart(fig)
+  train_df=df[['Date','Close']].copy()
+  
+  train_df=train_df.rename(columns={'Date':'ds','Close':'y'})
+  
+  year=st.select_slider('No_of_Year',options=[1,2,3,4,5,6,7,8,9,10])
+  
+  m=Prophet()
+  m.fit(train_df)
+  
+  future=m.make_future_dataframe(periods=year*365)
+  
+  
+  forecast=m.predict(future)
+  
+  st.subheader('Forecast Data')
+  st.table(forecast.tail(10))
+  
+  
+  fig1=plot_plotly(m,forecast)
+  st.write(fig1)
+  
+  
+  st.subheader('Forecast Components')
+  
+  fig2=m.plot_components(forecast)
+  st.write(fig2)
 
-
-
-
-train_df=df[['Date','Close']].copy()
-
-train_df=train_df.rename(columns={'Date':'ds','Close':'y'})
-
-year=st.select_slider('No_of_Year',options=[1,2,3,4,5,6,7,8,9,10])
-
-m=Prophet()
-m.fit(train_df)
-
-future=m.make_future_dataframe(periods=year*365)
-
-
-forecast=m.predict(future)
-
-st.subheader('Forecast Data')
-st.table(forecast.tail(10))
-
-
-fig1=plot_plotly(m,forecast)
-st.write(fig1)
-
-
-st.subheader('Forecast Components')
-
-fig2=m.plot_components(forecast)
-st.write(fig2)
+else:
+  print("Enter Start Date and waits for Data Loading")
 
 
 
