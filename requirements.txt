@@ -4,3 +4,5 @@ numpy
 seaborn
 prophet
 yfinance
+plotly
+matplotlib
