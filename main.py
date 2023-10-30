@@ -23,9 +23,11 @@ end_date=st.date_input('End Date')
 ticker=st.text_input('Ticker','AAPL')
 if start_date:
   df=yf.download(ticker,start=start_date,end=end_date)
+
+
 df.reset_index(inplace=True)
 
-st.table(df.head(10)
+st.table(df.head(10))
 
 
 fig=go.Figure()
