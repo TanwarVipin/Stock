@@ -49,6 +49,8 @@ if start_date:
 # Create a figure and add the candlestick trace to it
   fig = go.Figure(data=[trace], layout=layout)
 
+  st.plotly_chart(fig)
+
   
   train_df=df[['Date','Close']].copy()
   
