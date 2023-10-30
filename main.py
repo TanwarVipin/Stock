@@ -21,12 +21,8 @@ start_date=st.date_input('Start Date',value=None)
 end_date=st.date_input('End Date')
 
 ticker=st.text_input('Ticker','AAPL')
-try:
+if start_date:
   df=yf.download(ticker,start=start_date,end=end_date)
-except:
-  st.write("Enter Date and Waits for Data Loading")
-
-
 df.reset_index(inplace=True)
 
 st.table(df.head(10)
