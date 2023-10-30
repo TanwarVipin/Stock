@@ -19,7 +19,7 @@ start_date=st.date_input('Start Date')
 
 end_date=st.date_input('End Date')
 
-ticker=st.text_input('Ticker')
+ticker=st.text_input('Ticker',default='AAPL')
 
 df=yf.download(ticker,start=start_date,end=end_date)
 
@@ -28,16 +28,15 @@ df.reset_index(inplace=True)
 
 st.table(df)
 
-def plot_raw_data(df):
-  fig=go.Figure()
-  fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'],name='Stock_Final_Price'),line=dict(color='red'))
-  fig.add_trace(go.Scatter(x=df['Date'],y=df['Open'],name='Stock_Open_Price'),line=dict(color='blue'))
-  fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'].rolling(100).mean(),name='Stock_Moving_Average'),line=dict(color='green'))
-  fig.layout.update(title_text='Time Series Data',xaxis_rangeslider_visible=True)
-  st.plotly_chart(fig)
+
+fig=go.Figure()
+fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'],name='Stock_Final_Price'),line=dict(color='red'))
+fig.add_trace(go.Scatter(x=df['Date'],y=df['Open'],name='Stock_Open_Price'),line=dict(color='blue'))
+fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'].rolling(100).mean(),name='Stock_Moving_Average'),line=dict(color='green'))
+fig.layout.update(title_text='Time Series Data',xaxis_rangeslider_visible=True)
+st.plotly_chart(fig)
 
 
-plot_raw_data(df)
 
 
 train_df=df[['Date','Close']].copy()
