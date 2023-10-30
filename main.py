@@ -15,7 +15,6 @@ st.title('Stock Forecasting App')
 
 default_date = "2020-01-01"
 
-
 start_date=st.date_input('Start Date',value=None)
 
 end_date=st.date_input('End Date')
@@ -42,13 +41,13 @@ if start_date:
                        close=data['Close'])
 
 # Create a layout for the chart
-layout = go.Layout(title='Candlestick Chart',
+  layout = go.Layout(title='Candlestick Chart',
                    xaxis=dict(title='Date'),
                    yaxis=dict(title='Price'),
                   xaxis_rangeslider_visible=True)
 
 # Create a figure and add the candlestick trace to it
-fig = go.Figure(data=[trace], layout=layout)
+  fig = go.Figure(data=[trace], layout=layout)
 
   
   train_df=df[['Date','Close']].copy()
