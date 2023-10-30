@@ -13,9 +13,10 @@ from datetime import datetime
 
 st.title('Stock Forecasting App')
 
+default_date = datetime(2020, 1, 1)
 
 
-start_date=st.date_input('Start Date')
+start_date=st.date_input('Start Date',default_time)
 
 end_date=st.date_input('End Date')
 
