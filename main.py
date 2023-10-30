@@ -31,9 +31,9 @@ st.table(df)
 
 
 fig=go.Figure()
-fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'],name='Stock_Final_Price',line=dict(color='red'))
-fig.add_trace(go.Scatter(x=df['Date'],y=df['Open'],name='Stock_Open_Price',line=dict(color='blue'))
-fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'].rolling(100).mean(),name='Stock_Moving_Average'),line=dict(color='green'))
+fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'],name='Stock_Final_Price',line=dict(color='red')))
+fig.add_trace(go.Scatter(x=df['Date'],y=df['Open'],name='Stock_Open_Price',line=dict(color='blue')))
+fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'].rolling(100).mean(),name='Stock_Moving_Average',line=dict(color='green')))
 fig.layout.update(title_text='Time Series Data',xaxis_rangeslider_visible=True)
 st.plotly_chart(fig)
 
