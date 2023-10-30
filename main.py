@@ -21,13 +21,15 @@ start_date=st.date_input('Start Date',value=None)
 end_date=st.date_input('End Date')
 
 ticker=st.text_input('Ticker','AAPL')
-
-df=yf.download(ticker,start=start_date,end=end_date)
+try:
+  df=yf.download(ticker,start=start_date,end=end_date)
+except:
+  st.write("Enter Date and Waits for Data Loading")
 
 
 df.reset_index(inplace=True)
 
-st.table(df)
+st.table(df.head(10)
 
 
 fig=go.Figure()
