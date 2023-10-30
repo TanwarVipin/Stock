@@ -19,7 +19,7 @@ start_date=st.date_input('Start Date')
 
 end_date=st.date_input('End Date')
 
-ticker=st.text_input('Ticker',default='AAPL')
+ticker=st.text_input('Ticker','AAPL')
 
 df=yf.download(ticker,start=start_date,end=end_date)
 
