@@ -33,6 +33,24 @@ if start_date:
   fig.add_trace(go.Scatter(x=df['Date'],y=df['Close'].rolling(100).mean(),name='Stock_Moving_Average',line=dict(color='green')))
   fig.layout.update(title_text='Time Series Data',xaxis_rangeslider_visible=True)
   st.plotly_chart(fig)
+
+  data=df.copy()
+  trace = go.Candlestick(x=data['Date'],
+                       open=data['Open'],
+                       high=data['High'],
+                       low=data['Low'],
+                       close=data['Close'])
+
+# Create a layout for the chart
+layout = go.Layout(title='Candlestick Chart',
+                   xaxis=dict(title='Date'),
+                   yaxis=dict(title='Price'),
+                  xaxis_rangeslider_visible=True)
+
+# Create a figure and add the candlestick trace to it
+fig = go.Figure(data=[trace], layout=layout)
+
+  
   train_df=df[['Date','Close']].copy()
   
   train_df=train_df.rename(columns={'Date':'ds','Close':'y'})
