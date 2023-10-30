@@ -61,7 +61,7 @@ if start_date:
   st.write(fig2)
 
 else:
-  print("Enter Start Date and waits for Data Loading")
+  st.write("Enter Start Date and waits for Data Loading")
 
 
 
